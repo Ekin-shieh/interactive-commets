@@ -3,24 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive comments section</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./style.css">
+  <title>Interactive comments</title>
 </head>
 <body>
-
-  <!-- Pull dynamic content from the data.json file -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class="container">
+    <div class="first">
+      <div class="score-box">
+        <img src="./images/icon-plus.svg">
+        <div class="score">12</div>
+        <img src="./images/icon-minus.svg">
+      </div>
+      <div class="name-box">
+        <img src="./images/avatars/image-amyrobson.png">
+        <div class="name">amyrobson</div>
+        <div class="time">1 month ago</div>
+        <div class="icons">
+          <img src="./images/icon-reply.svg">Reply
+        </div>
+      </div>
+      <div class="content">
+        Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.
+      </div>
+    </div>
+    <div class="first">
+      <div class="score-box">
+        <img src="./images/icon-plus.svg">
+        <div class="score">5</div>
+        <img src="./images/icon-minus.svg">
+      </div>
+      <div class="name-box">
+        <img src="./images/avatars/image-maxblagun.png">
+        <div class="name">maxblagun</div>
+        <div class="time">2 weeks ago</div>
+        <div class="icons">
+          <img src="./images/icon-reply.svg">Reply
+        </div>
+      </div>
+      <div class="content">
+        Woah, your project looks awesome! How long have you been coding for? i'm still new, but think l want to dive into React as well soon. Perhaps you can give me an insight on where l can learn React? Thanks!
+      </div>
+    </div>
+    <div class="second">
+      <div class="score-box">
+        <img src="./images/icon-plus.svg">
+        <div class="score">4</div>
+        <img src="./images/icon-minus.svg">
+      </div>
+      <div class="name-box">
+        <img src="./images/avatars/image-ramsesmiron.png">
+        <div class="name">ramsesmiron</div>
+        <div class="time">1 week ago</div>
+        <div class="icons">
+          <img src="./images/icon-reply.svg">Reply
+        </div>
+      </div>
+      <div class="content small">
+        <span class="significance">@maxblagun</span> lf you're still new, l'd recommend focusing on the fundamentals of HTML, CSS, and IS before considering React. it's very tempting to jump ahead but lay a solid foundation first.
+      </div>
+    </div>
+    <div class="second">
+      <div class="score-box">
+        <img src="./images/icon-plus.svg">
+        <div class="score">2</div>
+        <img src="./images/icon-minus.svg">
+      </div>
+      <div class="name-box">
+        <img src="./images/avatars/image-juliusomo.png">
+        <div class="name">juliusomo</div>
+        <div class="sign">you</div>
+        <div class="time">2 days ago</div>
+        <div class="icons">
+          <div class="delete">
+            <img src="./images/icon-delete.svg">
+            <div>Delete</div>
+          </div>
+          <img src="./images/icon-edit.svg">Edit
+        </div>
+      </div>
+      <div class="content small">
+        <span class="significance">@ramsesmiron</span> l couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/ framework. But the fundamentals are what stay constant.
+      </div>
+    </div>
+  </div>
+  <div class="bottom-wrapper">
+    <div class="bottom">
+      <img src="./images/avatars/image-juliusomo.png">
+      <textarea id="ii" placeholder="Add a commet…" ></textarea>
+      <button>SEND</button>
+    </div>
   </div>
 </body>
 </html>
