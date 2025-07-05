@@ -44,10 +44,14 @@ function renderComments(comments: Comment[], currentUser: string) {
     const commentDiv = createCommentElement(comment.user, comment.content, comment.createdAt, comment.score, isCurrent);
     container.appendChild(commentDiv);
 
+    const replylist = document.createElement("div");
+    replylist.className = "replylist";
+    container.appendChild(replylist);
+
     comment.replies.forEach(reply => {
       const isCurrent = reply.user.username === currentUser;
       const replyDiv = createReplyElement(reply.user, reply.replyingTo, reply.content, reply.createdAt, reply.score, isCurrent);
-      container.appendChild(replyDiv);
+      replylist.appendChild(replyDiv);
     });
   });
 };
@@ -59,9 +63,9 @@ function createCommentElement(user: User, content: string, time: string, score: 
   if(isCurrent){
     wrapper.innerHTML = `
         <div class="score-box">
-            <img src="./images/icon-plus.svg">
+            <img src="./images/icon-plus.svg" class="plus">
             <div class="score">${score}</div>
-            <img src="./images/icon-minus.svg">
+            <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
             <img src="${user.image.png}" alt="${user.username}">
@@ -81,9 +85,9 @@ function createCommentElement(user: User, content: string, time: string, score: 
   } else {
     wrapper.innerHTML = `
         <div class="score-box">
-            <img src="./images/icon-plus.svg">
+            <img src="./images/icon-plus.svg" class="plus">
             <div class="score">${score}</div>
-            <img src="./images/icon-minus.svg">
+            <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
             <img src="${user.image.png}" alt="${user.username}">
@@ -106,9 +110,9 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
   if(isCurrent){
       wrapper.innerHTML = `
         <div class="score-box">
-            <img src="./images/icon-plus.svg">
+            <img src="./images/icon-plus.svg" class="plus">
             <div class="score">${score}</div>
-            <img src="./images/icon-minus.svg">
+            <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
             <img src="${user.image.png}" alt="${user.username}">
@@ -130,9 +134,9 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
   } else {
       wrapper.innerHTML = `
         <div class="score-box">
-            <img src="./images/icon-plus.svg">
+            <img src="./images/icon-plus.svg" class="plus">
             <div class="score">${score}</div>
-            <img src="./images/icon-minus.svg">
+            <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
             <img src="${user.image.png}" alt="${user.username}">

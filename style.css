@@ -117,10 +117,18 @@ body {
     }
 }
 
+.replylist {
+    width: 700px;
+    border-left: hsl(211, 10%, 85%) 2px solid;
+    align-items: flex-end;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .reply {
     width: 650px;
     height: 165px;
-    margin: 10px 0;
     border-radius: 10px;
     background-color: white;
     display: grid;
