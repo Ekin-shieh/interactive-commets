@@ -2,6 +2,30 @@ var voteMap = new WeakMap();
 var container = document.getElementById("container");
 container.addEventListener("click", function (e) {
     var target = e.target;
+    var pendingDeleteEl = null;
+    var modal = document.getElementById("delete-modal");
+    var cancelBtn = document.getElementById("cancel-btn");
+    var confirmBtn = document.getElementById("confirm-btn");
+    cancelBtn.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        pendingDeleteEl = null;
+    });
+    confirmBtn.addEventListener("click", function () {
+        if (pendingDeleteEl) {
+            pendingDeleteEl.remove();
+            pendingDeleteEl = null;
+        }
+        modal.classList.add("hidden");
+    });
+    var deleteBtn = target.closest(".delete");
+    if (deleteBtn) {
+        var wrapper = deleteBtn.closest(".comment, .reply");
+        if (wrapper) {
+            pendingDeleteEl = wrapper;
+            modal.classList.remove("hidden");
+        }
+        return;
+    }
     if (target.classList.contains("plus") || target.classList.contains("minus")) {
         var scoreBox = target.closest(".score-box");
         var score = scoreBox.querySelector(".score");

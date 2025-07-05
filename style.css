@@ -199,3 +199,53 @@ body {
         background-color: hsl(239, 57%, 60%);
     }
 }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  width: 400px;
+  height: 250px;
+
+  p {
+    color: hsl(211, 10%, 45%);
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 25px;
+  }
+
+  button {
+    width: 180px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    font-size: 20px;
+  }
+
+  #cancel-btn {
+    background-color: hsl(211, 10%, 45%);
+  }
+
+  #confirm-btn {
+    background-color: hsl(358, 79%, 66%);
+  }
+}
+
+.modal.hidden {
+  display: none;
+}
