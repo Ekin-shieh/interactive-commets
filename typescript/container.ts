@@ -52,7 +52,7 @@ function renderComments(comments: Comment[], currentUser: string) {
     replyinput.innerHTML = `
     <div class="bottom">
       <img src="./images/avatars/image-juliusomo.png">
-      <textarea>@${comment.user} </textarea>
+      <textarea>@${comment.user.username} </textarea>
       <button class="reply-btn">REPLY</button>
     </div>
     `;
@@ -72,7 +72,7 @@ function renderComments(comments: Comment[], currentUser: string) {
       `
       <div class="bottom">
         <img src="./images/avatars/image-juliusomo.png">
-        <textarea>@${reply.user} </textarea>
+        <textarea>@${reply.user.username} </textarea>
         <button class="reply2btn">REPLY</button>
       </div>
       `;

@@ -80,8 +80,16 @@ container.addEventListener("click", (e) => {
     if (target.classList.contains("reply-btn")) {
         const replyInput = target.closest(".replyinput")!;
         const textarea = replyInput.querySelector("textarea")!;
-        const content = textarea.value.trim();
-        if (!content) return;
+        const raw = textarea.value.trim();
+        if (!raw) return;
+
+        const match = raw.match(/^@(\w+)\s+(.*)$/);
+        let replyingTo = "";
+        let content = raw;
+        if (match) {
+        replyingTo = match[1];
+        content = match[2];
+        }
 
         const replyList = replyInput.nextElementSibling!;
         const newReply = document.createElement("div");
@@ -108,7 +116,7 @@ container.addEventListener("click", (e) => {
                 </div>
             </div>
         </div>
-        <div class="content">${content}</div>
+        <div class="content"><span class="significance">@${replyingTo}</span> ${content}</div>
         `;
         const reply2input = document.createElement("div");
         reply2input.className = "reply2input hidden";
@@ -133,8 +141,16 @@ container.addEventListener("click", (e) => {
     if (target.classList.contains("reply2btn")) {
         const replyInput = target.closest(".reply2input")!;
         const textarea = replyInput.querySelector("textarea")!;
-        const content = textarea.value.trim();
-        if (!content) return;
+        const raw = textarea.value.trim();
+        if (!raw) return;
+
+        const match = raw.match(/^@(\w+)\s+(.*)$/);
+        let replyingTo = "";
+        let content = raw;
+        if (match) {
+        replyingTo = match[1];
+        content = match[2];
+        }
 
         const replyList = replyInput.closest(".replylist")!;
         const newReply = document.createElement("div");
@@ -161,7 +177,7 @@ container.addEventListener("click", (e) => {
                 </div>
             </div>
         </div>
-        <div class="content">${content}</div>
+        <div class="content"><span class="significance">@${replyingTo}</span> ${content}</div>
         `;
         const reply2input = document.createElement("div");
         reply2input.className = "reply2input hidden";
@@ -180,6 +196,48 @@ container.addEventListener("click", (e) => {
 
         textarea.value = "";
         replyInput.classList.add("hidden");
+        return;
+    }
+
+    if (target.closest(".edit")) {
+        const reply = target.closest(".reply, .comment")!;
+        const contentDiv = reply.querySelector(".content")!;
+        const originalText = contentDiv.textContent?.trim() || "";
+
+        const atMatch = originalText.match(/^@(\w+)\s+/);
+        const mention = atMatch ? `@${atMatch[1]} ` : "";
+        const cleanText = atMatch ? originalText.replace(/^@\w+\s+/, "") : originalText;
+
+        const textarea = document.createElement("textarea");
+        textarea.value = cleanText;
+        const updateBtn = document.createElement("button");
+        updateBtn.className = "update-btn";
+        updateBtn.textContent = "UPDATE";
+        const updatewrapper = document.createElement("div");
+        updatewrapper.className = "updatewrapper";
+        updatewrapper.appendChild(textarea);
+        updatewrapper.appendChild(updateBtn);
+
+        contentDiv.replaceWith(updatewrapper);
+        textarea.dataset.mention = mention;
+
+        return;
+    }
+
+    if (target.classList.contains("update-btn")) {
+        const reply = target.closest(".reply, .comment")!;
+        const textarea = reply.querySelector("textarea")!;
+        const newText = textarea.value.trim();
+
+        const mention = textarea.dataset.mention || "";
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "content";
+        contentDiv.innerHTML = `<span class="significance">${mention}</span> ${newText}`;
+
+        const updatewrapper = reply.querySelector(".updatewrapper")!;
+        updatewrapper.replaceWith(contentDiv);
+
         return;
     }
 });
@@ -206,7 +264,10 @@ sendBtn.addEventListener("click", () => {
                         <img src="./images/icon-delete.svg">
                         <div>Delete</div>
                     </div>
-                    <img src="./images/icon-edit.svg">Edit
+                    <div class="edit">
+                        <img src="./images/icon-edit.svg">
+                        <div>Edit</div>
+                    </div>
                 </div>
             </div>
             <div class="content">${content}</div>
