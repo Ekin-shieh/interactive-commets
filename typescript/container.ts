@@ -42,16 +42,45 @@ function renderComments(comments: Comment[], currentUser: string) {
   comments.forEach(comment => {
     const isCurrent = comment.user.username === currentUser;
     const commentDiv = createCommentElement(comment.user, comment.content, comment.createdAt, comment.score, isCurrent);
-    container.appendChild(commentDiv);
+
+    const commentWrapper = document.createElement("div");
+    commentWrapper.className = "commentwrapper";
+    commentWrapper.appendChild(commentDiv);
+
+    const replyinput = document.createElement("div");
+    replyinput.className = "replyinput hidden";
+    replyinput.innerHTML = `
+    <div class="bottom">
+      <img src="./images/avatars/image-juliusomo.png">
+      <textarea>@${comment.user} </textarea>
+      <button class="reply-btn">REPLY</button>
+    </div>
+    `;
+    commentWrapper.appendChild(replyinput);
 
     const replylist = document.createElement("div");
     replylist.className = "replylist";
-    container.appendChild(replylist);
+    commentWrapper.appendChild(replylist);
+    container.appendChild(commentWrapper);
 
     comment.replies.forEach(reply => {
       const isCurrent = reply.user.username === currentUser;
       const replyDiv = createReplyElement(reply.user, reply.replyingTo, reply.content, reply.createdAt, reply.score, isCurrent);
-      replylist.appendChild(replyDiv);
+      const reply2input = document.createElement("div");
+      reply2input.className = "reply2input hidden";
+      reply2input.innerHTML = 
+      `
+      <div class="bottom">
+        <img src="./images/avatars/image-juliusomo.png">
+        <textarea>@${reply.user} </textarea>
+        <button class="reply2btn">REPLY</button>
+      </div>
+      `;
+      const replyWrapper = document.createElement("div");
+      replyWrapper.className = "replywrapper";
+      replyWrapper.appendChild(replyDiv);
+      replyWrapper.appendChild(reply2input);
+      replylist.appendChild(replyWrapper);
     });
   });
 };
@@ -77,7 +106,10 @@ function createCommentElement(user: User, content: string, time: string, score: 
                     <img src="./images/icon-delete.svg">
                     <div>Delete</div>
                 </div>
-                <img src="./images/icon-edit.svg">Edit
+                <div class="edit">
+                  <img src="./images/icon-edit.svg">
+                  <div>Edit</div>
+                </div>
             </div>
         </div>
         <div class="content">${content}</div>
@@ -94,7 +126,10 @@ function createCommentElement(user: User, content: string, time: string, score: 
             <div class="name">${user.username}</div>
             <div class="time">${time}</div>
             <div class="icons">
-                <img src="./images/icon-reply.svg">Reply
+              <div class="reply-icon">
+                  <img src="./images/icon-reply.svg">
+                  <div>Reply</div>
+              </div>
             </div>
         </div>
         <div class="content">${content}</div>
@@ -124,7 +159,10 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
                     <img src="./images/icon-delete.svg">
                     <div>Delete</div>
                 </div>
-                <img src="./images/icon-edit.svg">Edit
+                <div class="edit">
+                  <img src="./images/icon-edit.svg">
+                  <div>Edit</div>
+                </div>
             </div>
         </div>
         <div class="content">
@@ -143,7 +181,10 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
             <div class="name">${user.username}</div>
             <div class="time">${time}</div>
             <div class="icons">
-                <img src="./images/icon-reply.svg">Reply
+              <div class="reply-icon">
+                  <img src="./images/icon-reply.svg">
+                  <div>Reply</div>
+              </div>
             </div>
         </div>
         <div class="content">
