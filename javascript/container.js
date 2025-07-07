@@ -15,7 +15,7 @@ function renderComments(comments, currentUser) {
         commentWrapper.appendChild(commentDiv);
         var replyinput = document.createElement("div");
         replyinput.className = "replyinput hidden";
-        replyinput.innerHTML = "\n    <div class=\"bottom\">\n      <img src=\"./images/avatars/image-juliusomo.png\">\n      <textarea>@".concat(comment.user, " </textarea>\n      <button class=\"reply-btn\">REPLY</button>\n    </div>\n    ");
+        replyinput.innerHTML = "\n    <div class=\"bottom\">\n      <img src=\"./images/avatars/image-juliusomo.png\">\n      <textarea>@".concat(comment.user.username, " </textarea>\n      <button class=\"reply-btn\">REPLY</button>\n    </div>\n    ");
         commentWrapper.appendChild(replyinput);
         var replylist = document.createElement("div");
         replylist.className = "replylist";
@@ -27,7 +27,7 @@ function renderComments(comments, currentUser) {
             var reply2input = document.createElement("div");
             reply2input.className = "reply2input hidden";
             reply2input.innerHTML =
-                "\n      <div class=\"bottom\">\n        <img src=\"./images/avatars/image-juliusomo.png\">\n        <textarea>@".concat(reply.user, " </textarea>\n        <button class=\"reply2btn\">REPLY</button>\n      </div>\n      ");
+                "\n      <div class=\"bottom\">\n        <img src=\"./images/avatars/image-juliusomo.png\">\n        <textarea>@".concat(reply.user.username, " </textarea>\n        <button class=\"reply2btn\">REPLY</button>\n      </div>\n      ");
             var replyWrapper = document.createElement("div");
             replyWrapper.className = "replywrapper";
             replyWrapper.appendChild(replyDiv);
