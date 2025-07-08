@@ -431,8 +431,8 @@ button:active {
 }
 
 .modal-box {
-  padding: 20px;
-  width: 350px;
+  padding: 15px;
+  width: 340px;
 
   .modal-actions {
     justify-content: space-between;
