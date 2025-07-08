@@ -123,8 +123,8 @@ container.addEventListener("click", (e) => {
         reply2input.innerHTML = `
         <div class="bottom">
             <img src="./images/avatars/image-juliusomo.png">
-            <textarea id="reply-input"></textarea>
-            <button id="reply2btn">REPLY</button>
+            <textarea class="reply-input"></textarea>
+            <button class="reply2btn">REPLY</button>
         </div>
         `
         const replyWrapper = document.createElement("div");
@@ -184,8 +184,8 @@ container.addEventListener("click", (e) => {
         reply2input.innerHTML = `
         <div class="bottom">
             <img src="./images/avatars/image-juliusomo.png">
-            <textarea id="reply-input"></textarea>
-            <button id="reply2btn">REPLY</button>
+            <textarea class="reply-input"></textarea>
+            <button class="reply2btn">REPLY</button>
         </div>
         `
         const replyWrapper = document.createElement("div");
