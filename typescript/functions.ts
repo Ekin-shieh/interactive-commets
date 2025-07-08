@@ -101,7 +101,7 @@ container.addEventListener("click", (e) => {
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="./images/avatars/image-juliusomo.png" alt="juliusomo">
+            <img class="photo" src="./images/avatars/image-juliusomo.png" alt="juliusomo">
             <div class="name">juliusomo</div>
             <div class="sign">you</div>
             <div class="time">Just now</div>
@@ -162,7 +162,7 @@ container.addEventListener("click", (e) => {
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="./images/avatars/image-juliusomo.png" alt="juliusomo">
+            <img class="photo" src="./images/avatars/image-juliusomo.png" alt="juliusomo">
             <div class="name">juliusomo</div>
             <div class="sign">you</div>
             <div class="time">Just now</div>
@@ -255,7 +255,7 @@ sendBtn.addEventListener("click", () => {
                 <img src="./images/icon-minus.svg" class="minus">
             </div>
             <div class="name-box">
-                <img src="./images/avatars/image-juliusomo.png" alt="juliusomo">
+                <img class="photo" src="./images/avatars/image-juliusomo.png" alt="juliusomo">
                 <div class="name">juliusomo</div>
                 <div class="sign">you</div>
                 <div class="time">Just now</div>

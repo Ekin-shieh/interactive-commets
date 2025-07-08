@@ -1,34 +1,47 @@
+"use strict";
 fetch('./data.json')
-    .then(function (res) { return res.json(); })
-    .then(function (data) {
+    .then(res => res.json())
+    .then((data) => {
     renderComments(data.comments, data.currentUser.username);
 });
 function renderComments(comments, currentUser) {
-    var container = document.getElementById("container");
+    const container = document.getElementById("container");
     if (!container)
         return;
-    comments.forEach(function (comment) {
-        var isCurrent = comment.user.username === currentUser;
-        var commentDiv = createCommentElement(comment.user, comment.content, comment.createdAt, comment.score, isCurrent);
-        var commentWrapper = document.createElement("div");
+    comments.forEach(comment => {
+        const isCurrent = comment.user.username === currentUser;
+        const commentDiv = createCommentElement(comment.user, comment.content, comment.createdAt, comment.score, isCurrent);
+        const commentWrapper = document.createElement("div");
         commentWrapper.className = "commentwrapper";
         commentWrapper.appendChild(commentDiv);
-        var replyinput = document.createElement("div");
+        const replyinput = document.createElement("div");
         replyinput.className = "replyinput hidden";
-        replyinput.innerHTML = "\n    <div class=\"bottom\">\n      <img src=\"./images/avatars/image-juliusomo.png\">\n      <textarea>@".concat(comment.user.username, " </textarea>\n      <button class=\"reply-btn\">REPLY</button>\n    </div>\n    ");
+        replyinput.innerHTML = `
+    <div class="bottom">
+      <img src="./images/avatars/image-juliusomo.png">
+      <textarea>@${comment.user.username} </textarea>
+      <button class="reply-btn">REPLY</button>
+    </div>
+    `;
         commentWrapper.appendChild(replyinput);
-        var replylist = document.createElement("div");
+        const replylist = document.createElement("div");
         replylist.className = "replylist";
         commentWrapper.appendChild(replylist);
         container.appendChild(commentWrapper);
-        comment.replies.forEach(function (reply) {
-            var isCurrent = reply.user.username === currentUser;
-            var replyDiv = createReplyElement(reply.user, reply.replyingTo, reply.content, reply.createdAt, reply.score, isCurrent);
-            var reply2input = document.createElement("div");
+        comment.replies.forEach(reply => {
+            const isCurrent = reply.user.username === currentUser;
+            const replyDiv = createReplyElement(reply.user, reply.replyingTo, reply.content, reply.createdAt, reply.score, isCurrent);
+            const reply2input = document.createElement("div");
             reply2input.className = "reply2input hidden";
             reply2input.innerHTML =
-                "\n      <div class=\"bottom\">\n        <img src=\"./images/avatars/image-juliusomo.png\">\n        <textarea>@".concat(reply.user.username, " </textarea>\n        <button class=\"reply2btn\">REPLY</button>\n      </div>\n      ");
-            var replyWrapper = document.createElement("div");
+                `
+      <div class="bottom">
+        <img src="./images/avatars/image-juliusomo.png">
+        <textarea>@${reply.user.username} </textarea>
+        <button class="reply2btn">REPLY</button>
+      </div>
+      `;
+            const replyWrapper = document.createElement("div");
             replyWrapper.className = "replywrapper";
             replyWrapper.appendChild(replyDiv);
             replyWrapper.appendChild(reply2input);
@@ -38,26 +51,112 @@ function renderComments(comments, currentUser) {
 }
 ;
 function createCommentElement(user, content, time, score, isCurrent) {
-    var wrapper = document.createElement("div");
+    const wrapper = document.createElement("div");
     wrapper.className = "comment";
     if (isCurrent) {
-        wrapper.innerHTML = "\n        <div class=\"score-box\">\n            <img src=\"./images/icon-plus.svg\" class=\"plus\">\n            <div class=\"score\">".concat(score, "</div>\n            <img src=\"./images/icon-minus.svg\" class=\"minus\">\n        </div>\n        <div class=\"name-box\">\n            <img src=\"").concat(user.image.png, "\" alt=\"").concat(user.username, "\">\n            <div class=\"name\">").concat(user.username, "</div>\n            <div class=\"sign\">you</div>\n            <div class=\"time\">").concat(time, "</div>\n            <div class=\"icons\">\n                <div class=\"delete\">\n                    <img src=\"./images/icon-delete.svg\">\n                    <div>Delete</div>\n                </div>\n                <div class=\"edit\">\n                  <img src=\"./images/icon-edit.svg\">\n                  <div>Edit</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"content\">").concat(content, "</div>\n    ");
+        wrapper.innerHTML = `
+        <div class="score-box">
+            <img src="./images/icon-plus.svg" class="plus">
+            <div class="score">${score}</div>
+            <img src="./images/icon-minus.svg" class="minus">
+        </div>
+        <div class="name-box">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
+            <div class="name">${user.username}</div>
+            <div class="sign">you</div>
+            <div class="time">${time}</div>
+            <div class="icons">
+                <div class="delete">
+                    <img src="./images/icon-delete.svg">
+                    <div>Delete</div>
+                </div>
+                <div class="edit">
+                  <img src="./images/icon-edit.svg">
+                  <div>Edit</div>
+                </div>
+            </div>
+        </div>
+        <div class="content">${content}</div>
+    `;
     }
     else {
-        wrapper.innerHTML = "\n        <div class=\"score-box\">\n            <img src=\"./images/icon-plus.svg\" class=\"plus\">\n            <div class=\"score\">".concat(score, "</div>\n            <img src=\"./images/icon-minus.svg\" class=\"minus\">\n        </div>\n        <div class=\"name-box\">\n            <img src=\"").concat(user.image.png, "\" alt=\"").concat(user.username, "\">\n            <div class=\"name\">").concat(user.username, "</div>\n            <div class=\"time\">").concat(time, "</div>\n            <div class=\"icons\">\n              <div class=\"reply-icon\">\n                  <img src=\"./images/icon-reply.svg\">\n                  <div>Reply</div>\n              </div>\n            </div>\n        </div>\n        <div class=\"content\">").concat(content, "</div>\n    ");
+        wrapper.innerHTML = `
+        <div class="score-box">
+            <img src="./images/icon-plus.svg" class="plus">
+            <div class="score">${score}</div>
+            <img src="./images/icon-minus.svg" class="minus">
+        </div>
+        <div class="name-box">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
+            <div class="name">${user.username}</div>
+            <div class="time">${time}</div>
+            <div class="icons">
+              <div class="reply-icon">
+                  <img src="./images/icon-reply.svg">
+                  <div>Reply</div>
+              </div>
+            </div>
+        </div>
+        <div class="content">${content}</div>
+    `;
     }
     ;
     return wrapper;
 }
 ;
 function createReplyElement(user, replyingTo, content, time, score, isCurrent) {
-    var wrapper = document.createElement("div");
+    const wrapper = document.createElement("div");
     wrapper.className = "reply";
     if (isCurrent) {
-        wrapper.innerHTML = "\n        <div class=\"score-box\">\n            <img src=\"./images/icon-plus.svg\" class=\"plus\">\n            <div class=\"score\">".concat(score, "</div>\n            <img src=\"./images/icon-minus.svg\" class=\"minus\">\n        </div>\n        <div class=\"name-box\">\n            <img src=\"").concat(user.image.png, "\" alt=\"").concat(user.username, "\">\n            <div class=\"name\">").concat(user.username, "</div>\n            <div class=\"sign\">you</div>\n            <div class=\"time\">").concat(time, "</div>\n            <div class=\"icons\">\n                <div class=\"delete\">\n                    <img src=\"./images/icon-delete.svg\">\n                    <div>Delete</div>\n                </div>\n                <div class=\"edit\">\n                  <img src=\"./images/icon-edit.svg\">\n                  <div>Edit</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"content\">\n            <span class=\"significance\">@").concat(replyingTo, "</span> ").concat(content, "\n        </div>\n    ");
+        wrapper.innerHTML = `
+        <div class="score-box">
+            <img src="./images/icon-plus.svg" class="plus">
+            <div class="score">${score}</div>
+            <img src="./images/icon-minus.svg" class="minus">
+        </div>
+        <div class="name-box">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
+            <div class="name">${user.username}</div>
+            <div class="sign">you</div>
+            <div class="time">${time}</div>
+            <div class="icons">
+                <div class="delete">
+                    <img src="./images/icon-delete.svg">
+                    <div>Delete</div>
+                </div>
+                <div class="edit">
+                  <img src="./images/icon-edit.svg">
+                  <div>Edit</div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <span class="significance">@${replyingTo}</span> ${content}
+        </div>
+    `;
     }
     else {
-        wrapper.innerHTML = "\n        <div class=\"score-box\">\n            <img src=\"./images/icon-plus.svg\" class=\"plus\">\n            <div class=\"score\">".concat(score, "</div>\n            <img src=\"./images/icon-minus.svg\" class=\"minus\">\n        </div>\n        <div class=\"name-box\">\n            <img src=\"").concat(user.image.png, "\" alt=\"").concat(user.username, "\">\n            <div class=\"name\">").concat(user.username, "</div>\n            <div class=\"time\">").concat(time, "</div>\n            <div class=\"icons\">\n              <div class=\"reply-icon\">\n                  <img src=\"./images/icon-reply.svg\">\n                  <div>Reply</div>\n              </div>\n            </div>\n        </div>\n        <div class=\"content\">\n            <span class=\"significance\">@").concat(replyingTo, "</span> ").concat(content, "\n        </div>\n    ");
+        wrapper.innerHTML = `
+        <div class="score-box">
+            <img src="./images/icon-plus.svg" class="plus">
+            <div class="score">${score}</div>
+            <img src="./images/icon-minus.svg" class="minus">
+        </div>
+        <div class="name-box">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
+            <div class="name">${user.username}</div>
+            <div class="time">${time}</div>
+            <div class="icons">
+              <div class="reply-icon">
+                  <img src="./images/icon-reply.svg">
+                  <div>Reply</div>
+              </div>
+            </div>
+        </div>
+        <div class="content">
+            <span class="significance">@${replyingTo}</span> ${content}
+        </div>
+    `;
     }
     ;
     return wrapper;

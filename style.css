@@ -304,3 +304,173 @@ button:active {
     padding: 0 20px 10px 0;
     gap: 10px;
 }
+
+@media screen and (max-width: 1000px) {
+
+#container {
+    width: 375px;
+}
+
+.commentwrapper {
+    width: 375px;
+}
+
+.comment {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .name-box {
+        display: contents;
+    }
+
+    .content {
+        width: 320px;
+    }
+}
+
+.score-box {
+    flex-direction: row;
+    width: 100px;
+    height: 35px;
+    order: 3;
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+}
+
+.content {
+    padding: 70px 0 70px 0;
+    order: 2;
+}
+
+.photo {
+    order: 1;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
+
+.name {
+    order: 1;
+    position: absolute;
+    left: 80px;
+    top: 30px;
+}
+
+.time {
+    order: 1;
+    position: absolute;
+    right: 25px;
+    top: 30px;
+}
+
+.sign {
+    order: 1;
+    position: absolute;
+    top: 30px;
+    left: 160px;
+}
+
+.icons {
+    order: 3;
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+}
+
+.replylist {
+    width: 365px;
+}
+
+.reply {
+    width: 355px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .content {
+        width: 300px;
+    }
+
+    textarea {
+        width: 520px;
+        height: 50px;
+    }
+}
+
+.bottom {
+    width: 375px;
+    padding: 10px 15px;
+    flex-direction: column;
+    position: relative;
+
+    textarea {
+        order: 1;
+        margin: 0 0 60px 0;
+        width: 340px;
+    }
+    
+    img {
+        order: 2;
+        transform: scale(0.7);
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+    }
+
+    button {
+        order: 3;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+    }
+}
+
+.modal-box {
+  padding: 20px;
+  width: 350px;
+
+  .modal-actions {
+    justify-content: space-between;
+
+    button {
+        margin: 0;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.reply2input {
+    .bottom {
+        width: 355px;
+
+        textarea {
+            width: 325px;
+        }
+    }
+}
+
+.updatewrapper {
+    margin-top: 80px;
+    padding-right: 15px;
+
+    textarea {
+        padding: 5px;
+        height: 110px;
+        width: 325px;
+    }
+
+    button {
+        width: 60px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+}

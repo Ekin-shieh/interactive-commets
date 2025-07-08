@@ -97,7 +97,7 @@ function createCommentElement(user: User, content: string, time: string, score: 
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="${user.image.png}" alt="${user.username}">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
             <div class="name">${user.username}</div>
             <div class="sign">you</div>
             <div class="time">${time}</div>
@@ -122,7 +122,7 @@ function createCommentElement(user: User, content: string, time: string, score: 
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="${user.image.png}" alt="${user.username}">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
             <div class="name">${user.username}</div>
             <div class="time">${time}</div>
             <div class="icons">
@@ -150,7 +150,7 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="${user.image.png}" alt="${user.username}">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
             <div class="name">${user.username}</div>
             <div class="sign">you</div>
             <div class="time">${time}</div>
@@ -177,7 +177,7 @@ function createReplyElement(user: User, replyingTo: string, content: string, tim
             <img src="./images/icon-minus.svg" class="minus">
         </div>
         <div class="name-box">
-            <img src="${user.image.png}" alt="${user.username}">
+            <img class="photo" src="${user.image.png}" alt="${user.username}">
             <div class="name">${user.username}</div>
             <div class="time">${time}</div>
             <div class="icons">
